@@ -106,6 +106,16 @@ class Board {
 
     public void print() {
         //TO DO
+        System.out.println("__");
+        for (char[] row : cells) {
+            System.out.print("|");
+            for (char cell : row) {
+                System.out.print(cell != '-' ? cell : " ");
+                System.out.print("|");
+            }
+            System.out.println();
+        }
+        System.out.println("__");
     }
 
 
