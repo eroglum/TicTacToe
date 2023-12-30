@@ -40,7 +40,20 @@ public class TicTacToe {
     }
 
     private boolean makeMove(Player player) {
-        //TO DO
+        int x, y;
+        do {
+            System.out.println("Current Player: " + player.getMarker());
+            board.print();
+            System.out.println("row (0-2): ");
+            x = scanner.nextInt();
+            System.out.println("column (0-2): ");
+            y = scanner.nextInt();
+            if (!board.isCellEmpty(x, y)) {
+                System.out.println("This square is already taken. Please choose another square.");
+            }
+        } while (!board.isCellEmpty(x, y));
+
+        board.place(x, y, player.getMarker());
         return true;
     }
 
