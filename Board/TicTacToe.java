@@ -105,7 +105,6 @@ class Board {
     }
 
     public void print() {
-        //TO DO
         System.out.println("__");
         for (char[] row : cells) {
             System.out.print("|");
