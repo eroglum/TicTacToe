@@ -39,7 +39,6 @@ public class TicTacToe {
         scanner.close();
     }
 
-
     private boolean makeMove(Player player) {
         int x, y;
         do {
