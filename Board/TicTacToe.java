@@ -53,6 +53,7 @@ public class TicTacToe {
             }
         } while (!board.isCellEmpty(x, y));
         board.place(x, y, player.getMarker());
+
         return true;
     }
 
