@@ -63,8 +63,21 @@ public class TicTacToe {
         currentPlayer = (currentPlayer == player1) ? player2 : player1;
     }
 
-    public boolean hasWinner() {
-        // Implementierung der Siegesbedingungen hier
+    private boolean hasWinner() {
+        // The logic now uses the getCell method from Board to check for winning conditions.
+        char mark = currentPlayer.getMarker();
+        // Check rows and columns
+        for (int i = 0; i < 3; i++) {
+            if ((board.getCell(i, 0) == mark && board.getCell(i, 1) == mark && board.getCell(i, 2) == mark) ||
+                    (board.getCell(0, i) == mark && board.getCell(1, i) == mark && board.getCell(2, i) == mark)) {
+                return true;
+            }
+        }
+        // Check diagonals
+        if ((board.getCell(0, 0) == mark && board.getCell(1, 1) == mark && board.getCell(2, 2) == mark) ||
+                (board.getCell(0, 2) == mark && board.getCell(1, 1) == mark && board.getCell(2, 0) == mark)) {
+            return true;
+        }
         return false;
     }
 }
@@ -116,6 +129,11 @@ class Board {
                 cells[i][j] = '-';
             }
         }
+    }
+
+    // Method to get the value of a cell
+    public char getCell(int x, int y) {
+        return cells[x][y];
     }
 
     public void print() {
