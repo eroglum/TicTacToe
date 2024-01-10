@@ -20,4 +20,3 @@ jobs:
 
     - name: Test with Maven
       run: mvn test
-      working-directory: ./Board
