@@ -1,13 +1,14 @@
 package Board;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TicTacToe {
-    private Player player1;
-    private Player player2;
+    private final Player player1;
+    private final Player player2;
     private Player currentPlayer;
-    private Board board;
-    private Scanner scanner;
+    private final Board board;
+    private final Scanner scanner;
 
     public TicTacToe(char playerOneMarker, char playerTwoMarker) {
         board = new Board();
@@ -18,6 +19,24 @@ public class TicTacToe {
     }
 
     public void start() {
+        boolean playAgain;
+        do {
+            playGame();
+            playAgain = askToPlayAgain();
+            if (playAgain) {
+                resetGame();
+            }
+        } while (playAgain);
+        scanner.close();
+    }
+
+    private boolean askToPlayAgain() {
+        System.out.println("Möchten Sie ein neues Spiel starten? (ja/nein): ");
+        String response = scanner.next().trim().toLowerCase();
+        return response.equals("ja");
+    }
+
+    private void playGame() {
         boolean gameIsRunning = true;
         while (gameIsRunning) {
             board.print();
@@ -36,14 +55,18 @@ public class TicTacToe {
                 }
             }
         }
-        scanner.close();
+    }
+
+    private void resetGame() {
+        board.clear();
+        currentPlayer = player1; // Spieler 1 beginnt das neue Spiel
     }
 
     private boolean makeMove(Player player) {
         int x, y;
         do {
             System.out.println("Current Player: " + player.getMarker());
-            board.print();
+
             System.out.println("row (0-2): ");
             x = scanner.nextInt();
             System.out.println("column (0-2): ");
@@ -74,11 +97,8 @@ public class TicTacToe {
             }
         }
         // Check diagonals
-        if ((board.getCell(0, 0) == mark && board.getCell(1, 1) == mark && board.getCell(2, 2) == mark) ||
-                (board.getCell(0, 2) == mark && board.getCell(1, 1) == mark && board.getCell(2, 0) == mark)) {
-            return true;
-        }
-        return false;
+        return (board.getCell(0, 0) == mark && board.getCell(1, 1) == mark && board.getCell(2, 2) == mark) ||
+                (board.getCell(0, 2) == mark && board.getCell(1, 1) == mark && board.getCell(2, 0) == mark);
     }
 }
 
@@ -86,7 +106,7 @@ public class TicTacToe {
 
 
 class Player {
-    private char marker;
+    private final char marker;
 
     public Player(char marker) {
         this.marker = marker;
@@ -98,7 +118,7 @@ class Player {
 }
 
 class Board {
-    private char[][] cells = new char[3][3];
+    private final char[][] cells = new char[3][3];
 
     public Board() {
         clear();
@@ -126,10 +146,8 @@ class Board {
     }
 
     public void clear() {
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                cells[i][j] = '-';
-            }
+        for (char[] cell : cells) {
+            Arrays.fill(cell, '-');
         }
     }
 
