@@ -25,4 +25,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: tictactoe
-        path: ./Board/target/tictactoe.jar
+        path: ./Board/target/tic-tac-toe-0.1.0-SNAPSHOT.jar
