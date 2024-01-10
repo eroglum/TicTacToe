@@ -1,12 +1,11 @@
-name: Build and Deploy
+name: Java CI Build and Artifact Upload
 
 on:
   push:
-    branches: 
-      - main
+    branches: [ main ]
 
 jobs:
-  build-and-release:
+  build-and-upload-artifact:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,14 +15,14 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
+        distribution: 'temurin'
 
     - name: Build with Maven
       run: mvn clean package
-      working-directory: ./Board
+      working-directory: ./Board 
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: tictactoe
-        path: target/tictactoe.jar
-
+        path: ./Board/target/tictactoe.jar
