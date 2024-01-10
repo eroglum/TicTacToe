@@ -98,6 +98,14 @@ public class TicTacToe {
         return (board.getCell(0, 0) == mark && board.getCell(1, 1) == mark && board.getCell(2, 2) == mark) ||
                 (board.getCell(0, 2) == mark && board.getCell(1, 1) == mark && board.getCell(2, 0) == mark);
     }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
 }
 
 
