@@ -1,5 +1,3 @@
-package Board;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -170,10 +168,7 @@ class Board {
     }
 
 
-        public static void main(String[] args) {
-            TicTacToe game = new TicTacToe('X', 'O');
-            game.start();
-        }
+
 
 }
 
